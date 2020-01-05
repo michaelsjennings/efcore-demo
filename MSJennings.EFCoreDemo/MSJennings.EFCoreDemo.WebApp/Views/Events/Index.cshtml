@@ -6,6 +6,13 @@
 
 <h1>@ViewData["Title"]</h1>
 
+<p class="alert alert-info">
+    To generate sample data for testing,
+    publish the database project <span class="font-weight-bold">MSJennings.EFCoreDemo.Database</span>
+    and execute the SQL script <span class="font-weight-bold">/ScriptsNotInBuild/SampleData.sql</span>
+    against the published database.
+</p>
+
 <table class="table table-bordered">
     <thead>
         <tr>
@@ -25,11 +32,11 @@
                 <td>@eventsListItem.Date.ToShortDateString()</td>
                 <td>@eventsListItem.LocationDescription</td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@eventsListItem.Id" class="btn btn-success">
+                    <a asp-action="Edit" asp-route-id="@eventsListItem.Id" class="btn btn-success" title="Edit">
                         <i class="fa fa-pencil-alt"></i>
                     </a>
 
-                    <a asp-action="Delete" asp-route-id="@eventsListItem.Id" class="btn btn-danger">
+                    <a asp-action="Delete" asp-route-id="@eventsListItem.Id" class="btn btn-danger" title="Delete">
                         <i class="fa fa-trash-alt"></i>
                     </a>
                 </td>

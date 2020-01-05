@@ -69,8 +69,15 @@ namespace MSJennings.EFCoreDemo.WebApp.Controllers
                     _eventsDataService.DeleteEvent(id);
                     _locationsDataService.DeleteLocation(@event.LocationId);
 
-                    throw new InvalidOperationException("Something went wrong!");
-    
+                    //
+                    // un-comment the line below to simulate an unexpected error
+                    // occurring during the course of the transaction
+                    // this should result in the entire transaction being rolled-back
+                    // and nothing should actually be deleted from the database
+                    //
+                    // throw new InvalidOperationException("Something went wrong!");
+                    //
+
                     transaction.Complete();
 
                     return RedirectToAction(nameof(Index));
