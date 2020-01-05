@@ -1,0 +1,39 @@
+﻿@model MSJennings.EFCoreDemo.WebApp.ViewModels.Events.IndexViewModel
+
+@{
+    ViewData["Title"] = "Events";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Date</th>
+            <th>Location</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var eventsListItem in Model.EventsList)
+        {
+            <tr>
+                <td>@eventsListItem.Id</td>
+                <td>@eventsListItem.Title</td>
+                <td>@eventsListItem.Date.ToShortDateString()</td>
+                <td>@eventsListItem.LocationDescription</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@eventsListItem.Id" class="btn btn-success">
+                        <i class="fa fa-pencil-alt"></i>
+                    </a>
+
+                    <a asp-action="Delete" asp-route-id="@eventsListItem.Id" class="btn btn-danger">
+                        <i class="fa fa-trash-alt"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
