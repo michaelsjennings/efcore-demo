@@ -7,7 +7,7 @@ using System.Transactions;
 
 namespace MSJennings.EFCoreDemo.WebApp.Controllers.Api
 {
-    [Route("api/[controller]")]
+    [Route("api/Events")]
     [ApiController]
     public class EventsApiController : ControllerBase
     {

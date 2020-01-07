@@ -9,7 +9,9 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "MSJennings.EFCoreDemo.Datab
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MSJennings.EFCoreDemo.WebApp", "MSJennings.EFCoreDemo.WebApp\MSJennings.EFCoreDemo.WebApp.csproj", "{4ECC5CA0-6D08-4B60-AD97-30FAF1E2EA49}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSJennings.EFCoreDemo.Tests", "MSJennings.EFCoreDemo.Tests\MSJennings.EFCoreDemo.Tests.csproj", "{AE293A4E-4F55-4F41-A9D1-A80B27F7AFB9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MSJennings.EFCoreDemo.Tests", "MSJennings.EFCoreDemo.Tests\MSJennings.EFCoreDemo.Tests.csproj", "{AE293A4E-4F55-4F41-A9D1-A80B27F7AFB9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSJennings.EFDemo.ConsoleApp", "MSJennings.EFDemo.ConsoleApp\MSJennings.EFDemo.ConsoleApp.csproj", "{B49A3EED-FE39-434E-8337-03D712E6E50D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +37,10 @@ Global
 		{AE293A4E-4F55-4F41-A9D1-A80B27F7AFB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE293A4E-4F55-4F41-A9D1-A80B27F7AFB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE293A4E-4F55-4F41-A9D1-A80B27F7AFB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B49A3EED-FE39-434E-8337-03D712E6E50D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B49A3EED-FE39-434E-8337-03D712E6E50D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B49A3EED-FE39-434E-8337-03D712E6E50D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B49A3EED-FE39-434E-8337-03D712E6E50D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
