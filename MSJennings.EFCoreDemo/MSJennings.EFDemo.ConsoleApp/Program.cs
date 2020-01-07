@@ -2,6 +2,8 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Net.Mime;
 using System.Text;
@@ -21,7 +23,14 @@ namespace MSJennings.EFDemo.ConsoleApp
             _serviceProvider = new ServiceCollection().AddHttpClient().BuildServiceProvider();
             _httpClientFactory = _serviceProvider.GetService<IHttpClientFactory>();
 
-            await CreateUpdateAndDeleteEventThroughApi();
+            List<Task> tasks = new List<Task>();
+
+            for (var i = 0; i < 1000; i++)
+            {
+                tasks.Add(CreateUpdateAndDeleteEventThroughApi());
+            }
+
+            await Task.WhenAll(tasks);
         }
 
         static async Task RandomDelay()
@@ -41,32 +50,68 @@ namespace MSJennings.EFDemo.ConsoleApp
                 var postRequestJson = JsonConvert.SerializeObject(
                     new
                     {
-                        Title = "Some Title",
-                        Date = DateTime.Today,
-                        LocationDescription = "Some Location"
+                        Title = Faker.Company.CatchPhrase(),
+                        Date = Faker.Date.Past(),
+                        LocationDescription =
+                            Faker.Number.RandomNumber(1, 9999) + " " +
+                            Faker.Address.StreetName() + " " +
+                            Faker.Address.StreetSuffix() + ", " +
+                            Faker.Address.USCity() + ", " +
+                            Faker.Address.StateAbbreviation() + " " +
+                            Faker.Address.USZipCode()
                     });
 
                 var postResponse = await client.PostAsync(eventsApiBaseUrl, new StringContent(postRequestJson, Encoding.UTF8, MediaTypeNames.Application.Json));
-                var postResponseContent = await postResponse.Content.ReadAsStringAsync();
-                var postReponseData = JObject.Parse(postResponseContent);
+                if (postResponse.StatusCode != HttpStatusCode.Created)
+                {
+                    Console.WriteLine($"ERROR CREATING EVENT!");
+                }
+                else
+                {
+                    var postResponseContent = await postResponse.Content.ReadAsStringAsync();
+                    var postReponseData = JObject.Parse(postResponseContent);
 
-                var eventId = postReponseData["eventId"].Value<int>();
+                    var eventId = postReponseData["eventId"].Value<int>();
+                    Console.WriteLine($"Created event Id {eventId}");
 
-                await RandomDelay();
+                    await RandomDelay();
 
-                var putRequestJson = JsonConvert.SerializeObject(
-                    new
+                    var putRequestJson = JsonConvert.SerializeObject(
+                        new
+                        {
+                            Title = Faker.Company.CatchPhrase(),
+                            Date = Faker.Date.Past(),
+                            LocationDescription =
+                                Faker.Number.RandomNumber(1, 9999) + " " +
+                                Faker.Address.StreetName() + " " +
+                                Faker.Address.StreetSuffix() + ", " +
+                                Faker.Address.USCity() + ", " +
+                                Faker.Address.StateAbbreviation() + " " +
+                                Faker.Address.USZipCode()
+                        });
+
+                    var putResponse = await client.PutAsync($"{eventsApiBaseUrl}/{eventId}", new StringContent(putRequestJson, Encoding.UTF8, MediaTypeNames.Application.Json));
+                    if (putResponse.StatusCode != HttpStatusCode.OK)
                     {
-                        Title = "Some Other Title",
-                        Date = DateTime.Today.AddDays(1),
-                        LocationDescription = "Some Other Location"
-                    });
+                        Console.WriteLine($"ERROR UPDATING EVENT ID {eventId}!");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Updated event Id {eventId}");
 
-                await client.PutAsync($"{eventsApiBaseUrl}/{eventId}", new StringContent(putRequestJson, Encoding.UTF8, MediaTypeNames.Application.Json));
+                        await RandomDelay();
 
-                await RandomDelay();
-
-                await client.DeleteAsync($"{eventsApiBaseUrl}/{eventId}");
+                        var deleteReponse = await client.DeleteAsync($"{eventsApiBaseUrl}/{eventId}");
+                        if (deleteReponse.StatusCode != HttpStatusCode.OK)
+                        {
+                            Console.WriteLine($"ERROR DELETING EVENT ID {eventId}!");
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Deleted event Id {eventId}");
+                        }
+                    }
+                }
             }
         }
     }
