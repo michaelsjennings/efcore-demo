@@ -26,7 +26,7 @@ namespace MSJennings.EFCoreDemo.Business.Services
             return _context.Events.AsNoTracking().SingleOrDefault(x => x.Id == id);
         }
 
-        public void AddEvent(Event @event)
+        public int AddEvent(Event @event)
         {
             if (@event is null)
             {
@@ -34,6 +34,9 @@ namespace MSJennings.EFCoreDemo.Business.Services
             }
 
             _context.Events.Add(@event);
+            _context.SaveChanges();
+
+            return @event.Id;
         }
 
         public void UpdateEvent(Event @event)
@@ -44,6 +47,7 @@ namespace MSJennings.EFCoreDemo.Business.Services
             }
 
             _context.Events.Update(@event);
+            _context.SaveChanges();
         }
 
         public void DeleteEvent(int id)

@@ -67,7 +67,11 @@ namespace MSJennings.EFCoreDemo.WebApp.Controllers
                     var @event = _eventsDataService.GetEvent(id);
 
                     _eventsDataService.DeleteEvent(id);
-                    _locationsDataService.DeleteLocation(@event.LocationId);
+
+                    if (@event.LocationId.HasValue)
+                    {
+                        _locationsDataService.DeleteLocation(@event.LocationId.Value);
+                    }
 
                     //
                     // un-comment the line below to simulate an unexpected error

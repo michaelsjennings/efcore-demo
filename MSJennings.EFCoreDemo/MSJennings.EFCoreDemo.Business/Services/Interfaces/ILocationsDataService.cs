@@ -6,7 +6,7 @@ namespace MSJennings.EFCoreDemo.Business.Services.Interfaces
     {
         Location GetLocation(int id);
 
-        void AddLocation(Location location);
+        int AddLocation(Location location);
 
         void UpdateLocation(Location location);
 

@@ -9,7 +9,7 @@ namespace MSJennings.EFCoreDemo.Business.Services.Interfaces
 
         Event GetEvent(int id);
 
-        void AddEvent(Event @event);
+        int AddEvent(Event @event);
 
         void UpdateEvent(Event @event);
 

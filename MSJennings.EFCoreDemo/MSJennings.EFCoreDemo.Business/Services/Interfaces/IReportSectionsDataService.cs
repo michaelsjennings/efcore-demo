@@ -9,7 +9,7 @@ namespace MSJennings.EFCoreDemo.Business.Services.Interfaces
 
         ReportSection GetReportSection(int id);
 
-        void AddReportSection(ReportSection reportSection);
+        int AddReportSection(ReportSection reportSection);
 
         void UpdateReportSection(ReportSection reportSection);
 

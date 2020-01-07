@@ -26,7 +26,7 @@ namespace MSJennings.EFCoreDemo.Business.Services
             return _context.ReportSections.AsNoTracking().SingleOrDefault(x => x.Id == id);
         }
 
-        public void AddReportSection(ReportSection reportSection)
+        public int AddReportSection(ReportSection reportSection)
         {
             if (reportSection is null)
             {
@@ -34,6 +34,9 @@ namespace MSJennings.EFCoreDemo.Business.Services
             }
 
             _context.ReportSections.Add(reportSection);
+            _context.SaveChanges();
+
+            return reportSection.Id;
         }
 
         public void UpdateReportSection(ReportSection reportSection)
@@ -44,6 +47,7 @@ namespace MSJennings.EFCoreDemo.Business.Services
             }
 
             _context.ReportSections.Update(reportSection);
+            _context.SaveChanges();
         }
 
         public void DeleteReportSection(int id)

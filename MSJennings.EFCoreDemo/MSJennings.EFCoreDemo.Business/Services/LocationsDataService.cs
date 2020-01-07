@@ -21,7 +21,7 @@ namespace MSJennings.EFCoreDemo.Business.Services
             return _context.Locations.AsNoTracking().SingleOrDefault(x => x.Id == id);
         }
 
-        public void AddLocation(Location location)
+        public int AddLocation(Location location)
         {
             if (location is null)
             {
@@ -29,6 +29,9 @@ namespace MSJennings.EFCoreDemo.Business.Services
             }
 
             _context.Locations.Add(location);
+            _context.SaveChanges();
+
+            return location.Id;
         }
 
         public void UpdateLocation(Location location)
@@ -39,6 +42,7 @@ namespace MSJennings.EFCoreDemo.Business.Services
             }
 
             _context.Locations.Update(location);
+            _context.SaveChanges();
         }
 
         public void DeleteLocation(int id)

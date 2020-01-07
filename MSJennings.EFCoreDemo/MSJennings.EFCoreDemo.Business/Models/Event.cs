@@ -10,7 +10,7 @@ namespace MSJennings.EFCoreDemo.Business.Models
 
         public DateTime Date { get; set; }
 
-        public int LocationId { get; set; }
+        public int? LocationId { get; set; }
 
         public virtual Location Location { get; set; }
     }

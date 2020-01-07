@@ -26,7 +26,7 @@ namespace MSJennings.EFCoreDemo.Business.Services
             return _context.Reports.AsNoTracking().SingleOrDefault(x => x.Id == id);
         }
 
-        public void AddReport(Report report)
+        public int AddReport(Report report)
         {
             if (report is null)
             {
@@ -34,6 +34,9 @@ namespace MSJennings.EFCoreDemo.Business.Services
             }
 
             _context.Reports.Add(report);
+            _context.SaveChanges();
+
+            return report.Id;
         }
 
         public void UpdateReport(Report report)
@@ -44,6 +47,7 @@ namespace MSJennings.EFCoreDemo.Business.Services
             }
 
             _context.Reports.Update(report);
+            _context.SaveChanges();
         }
 
         public void DeleteReport(int id)
