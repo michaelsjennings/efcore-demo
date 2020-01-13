@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MSJennings.EFCoreDemo.WebAp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MSJennings.EFCoreDemo.Tests", "MSJennings.EFCoreDemo.Tests\MSJennings.EFCoreDemo.Tests.csproj", "{AE293A4E-4F55-4F41-A9D1-A80B27F7AFB9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSJennings.EFDemo.ConsoleApp", "MSJennings.EFDemo.ConsoleApp\MSJennings.EFDemo.ConsoleApp.csproj", "{B49A3EED-FE39-434E-8337-03D712E6E50D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MSJennings.EFCoreDemo.ConsoleApp", "MSJennings.EFCoreDemo.ConsoleApp\MSJennings.EFCoreDemo.ConsoleApp.csproj", "{B49A3EED-FE39-434E-8337-03D712E6E50D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

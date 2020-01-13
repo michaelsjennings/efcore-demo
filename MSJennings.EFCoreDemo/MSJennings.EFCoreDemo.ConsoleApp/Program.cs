@@ -9,7 +9,7 @@ using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MSJennings.EFDemo.ConsoleApp
+namespace MSJennings.EFCoreDemo.ConsoleApp
 {
     class Program
     {
@@ -23,7 +23,7 @@ namespace MSJennings.EFDemo.ConsoleApp
             _serviceProvider = new ServiceCollection().AddHttpClient().BuildServiceProvider();
             _httpClientFactory = _serviceProvider.GetService<IHttpClientFactory>();
 
-            List<Task> tasks = new List<Task>();
+            var tasks = new List<Task>();
 
             for (var i = 0; i < 1000; i++)
             {
